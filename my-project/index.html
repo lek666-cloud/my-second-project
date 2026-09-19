@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="校园机会站：帮助新生发现、理解并参与校园活动与机会" />
+  <title>校园机会站 · 新生导航</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="校园机会站首页"><span class="brand-mark">✦</span><span>校园机会站<small>新生导航</small></span></a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#home" data-nav="home">发现</a><a href="#events" data-nav="events">全部机会</a><a href="#calendar" data-nav="calendar">日程</a><a href="#mine" data-nav="mine">我的</a>
+    </nav>
+    <button class="publish-top" id="openPublish">＋ 发布机会</button>
+  </header>
+
+  <main>
+    <section id="home" class="hero page-section">
+      <div class="hero-copy"><p class="eyebrow">2026 · 秋季学期</p><h1>把校园里的<br><em>好机会</em> 变成你的下一步</h1><p class="hero-text">为新生整理每一个值得参加的活动、讲座、招募与学习资源。先从今天能做的事开始。</p>
+        <div class="hero-actions"><a class="button primary" href="#events">开始探索 <span>→</span></a><button class="button ghost" id="quickPublish">分享一个机会</button></div>
+      </div>
+      <div class="hero-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="ticket"><span class="ticket-dot"></span><b>今日精选</b><strong>AI应用入门<br>公开课</strong><small>09.19 · 19:00</small><span class="ticket-arrow">↗</span></div><div class="float-card card-a">⌁ <b>22</b><small>条校园信息</small></div><div class="float-card card-b">✓ <b>新生友好</b><small>从零开始也可以</small></div></div>
+    </section>
+
+    <section class="stats"><div><b>22</b><span>本周机会</span></div><div><b>8</b><span>适合新生</span></div><div><b>4</b><span>今日截止</span></div><div class="stats-tip">✦ <span>把握当下，<strong>先报名再了解</strong></span></div></section>
+
+    <section id="events" class="content page-section"><div class="section-heading"><div><p class="eyebrow">EXPLORE OPPORTUNITIES</p><h2>你可能感兴趣的</h2></div><a href="#events" id="viewAll">查看全部 <span>→</span></a></div>
+      <div class="filter-row"><label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="搜索活动、技能或关键词" /></label><select id="sourceFilter"><option value="all">所有来源</option><option value="school">学校通知</option><option value="college">学院发布</option><option value="student">学生自主发布</option></select><select id="typeFilter"><option value="all">所有类型</option><option value="讲座">讲座分享</option><option value="招募">团队招募</option><option value="工作坊">工作坊</option><option value="竞赛">竞赛挑战</option><option value="活动">实践活动</option><option value="资源">学习资源</option></select></div>
+      <div class="chips"><button class="chip active" data-preset="all">全部</button><button class="chip" data-preset="new">✦ 新生友好</button><button class="chip" data-preset="soon">⚡ 即将截止</button><button class="chip" data-preset="free">免费参加</button></div>
+      <div id="eventGrid" class="event-grid"></div><p id="emptyState" class="empty" hidden>没有找到匹配的机会，试试换一个关键词吧。</p>
+    </section>
+
+    <section id="calendar" class="calendar-section page-section"><div class="section-heading"><div><p class="eyebrow">YOUR WEEK</p><h2>这一周，安排得刚刚好</h2></div><a href="#mine">查看我的日程 <span>→</span></a></div><div id="weekStrip" class="week-strip"></div><div id="calendarList" class="calendar-list"></div></section>
+
+    <section id="mine" class="mine-section page-section"><div class="mine-panel"><div><p class="eyebrow">YOUR SPACE</p><h2>我的机会库</h2><p>收藏和报名过的内容会在这里出现，随时回来查看。</p></div><div class="mine-count"><b id="savedCount">0</b><span>已收藏</span><b id="joinedCount">0</b><span>已报名</span></div></div><div id="mineList" class="mine-list"></div></section>
+  </main>
+
+  <footer><div class="brand"><span class="brand-mark">✦</span><span>校园机会站<small>新生导航</small></span></div><p>让每一次尝试，都算数。<br><small>模拟信息 · 2026.09.19</small></p></footer>
+
+  <div class="modal-backdrop" id="detailModal" hidden><article class="modal" id="detailContent"></article></div>
+  <div class="modal-backdrop" id="publishModal" hidden><article class="modal publish-modal"><button class="close" data-close>×</button><p class="eyebrow">SHARE AN OPPORTUNITY</p><h2>发布一个校园机会</h2><p class="modal-lead">把你知道的好机会分享给更多同学。</p><form id="publishForm"><label>机会名称<input name="title" required placeholder="例如：周末羽毛球约球" /></label><div class="form-grid"><label>日期与时间<input name="date" required placeholder="9月25日 15:00" /></label><label>地点<input name="location" required placeholder="例如：风雨操场" /></label></div><div class="form-grid"><label>类型<select name="type"><option>活动</option><option>招募</option><option>讲座</option><option>工作坊</option></select></label><label>名额<input name="limit" placeholder="例如：不限" /></label></div><label>简单介绍<textarea name="description" required placeholder="说说活动内容、适合谁参加……"></textarea></label><button class="button primary full" type="submit">发布机会 <span>→</span></button></form></article></div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
